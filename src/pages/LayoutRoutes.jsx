@@ -12,6 +12,8 @@ import Login from './page/account/login-auth/Login'
 import Order from './page/account/Order'
 import Brand from './page/shoes/Brand'
 import OrderSuccess from './page/account/OrderSuccess'
+import OAuthGoogle from './page/account/OAuthGoogle'
+import OAuthFacebook from './page/account/OAuthFacebook'
 const LayoutRoutes = () => {
     return (
         <Fragment>
@@ -27,8 +29,11 @@ const LayoutRoutes = () => {
                     <Route path='/customer/order/register' element={<Order />} />
                     <Route path='/product-details/:productId' element={<ProductDetail />} />
                     <Route path='/search' element={<Brand type="light" cartClass="cart-info cart-wrap"/>} />
-
                     <Route path='/' element={<Shoes />} />
+
+                    
+                    <Route path={`/oauth/google`} element={<OAuthGoogle />} />
+                    <Route path={`/oauth/facebook`} element={<OAuthFacebook />} />
                 </Route>
             </Routes>
         </Fragment>
