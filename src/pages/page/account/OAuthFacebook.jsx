@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { getFetch } from '../../../services/fetch-data';
 import UserContext from '../../../helpers/user';
-
+import { Spinner } from 'reactstrap';
 const OAuthFacebook = () => {
     const context = useContext(UserContext);
     const history = useNavigate();
@@ -22,7 +22,7 @@ const OAuthFacebook = () => {
             })
     }, [])
     return (
-        <></>
+        <><Spinner animation="border" variant="light" /></>
     )
 }
 

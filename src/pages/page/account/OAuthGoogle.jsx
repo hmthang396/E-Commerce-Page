@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { getFetch } from '../../../services/fetch-data';
 import UserContext from '../../../helpers/user';
+import { Spinner } from 'reactstrap';
 
 const OAuthGoogle = () => {
     const context = useContext(UserContext);
@@ -21,7 +22,9 @@ const OAuthGoogle = () => {
             })
     }, [])
     return (
-        <></>
+        <>
+			<Spinner animation="border" variant="light" />
+		</>
     )
 }
 
