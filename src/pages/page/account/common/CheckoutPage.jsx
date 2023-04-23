@@ -7,7 +7,7 @@ import CartContext from '../../../../helpers/cart';
 import UserContext from '../../../../helpers/user';
 import { postFetch } from '../../../../services/fetch-data';
 import paypal from "../../../../assets/images/paypal.png";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, redirect } from 'react-router-dom';
 const CheckoutPage = () => {
     const cartContext = useContext(CartContext);
     const userContext = useContext(UserContext);
@@ -46,7 +46,11 @@ const CheckoutPage = () => {
                     setPhoneNumber("");
                     setMethod("");
                     cartContext.setCartItems([]);
-                    history(`/page/account/order-success/${result.Data.code}`);
+                    if (method === "PayPal") {
+                        window.location.replace(`${result.Data.links[1].href}`);
+                    } else {
+                        history(`/page/account/order-success/${result.Data.code}`);
+                    }
                 } else {
                     toast.warn(result.Message)
                 }
@@ -54,6 +58,7 @@ const CheckoutPage = () => {
             .catch((error) => {
                 console.log(error);
             })
+
     };
     return (
         <section className="section-b-space">
@@ -91,6 +96,7 @@ const CheckoutPage = () => {
                                                 value={city}
                                                 onChange={(e) => { setCity(e.target.value); }}
                                             >
+                                                <option value={null}>Select</option>
                                                 <option>Đà Nẵng</option>
                                                 <option>Hồ Chí Minh</option>
                                                 <option>Hà Nội</option>
